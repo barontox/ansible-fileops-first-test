@@ -1,0 +1,35 @@
+---
+
+#create a directory and a file
+
+- hosts: tower
+  become: yes
+  tasks:
+   - name: checking if the directory exists
+     stat:
+       path: /tmp/ansible
+     register: sym
+
+   - debug:
+       msg: "isdir isn't defined (path doesn't exist)"
+     when: sym.stat.isdir is not defined and sym.stat.isdir == FALSE
+
+  - name: create temporary build directory
+    tempfile:
+      state: directory
+     suffix: ansible
+     register: anspath
+
+   - debug:
+       msg: "created new directory" + anspath
+
+  - name: create temporary file
+    tempfile:
+      state: file
+      path: anspath
+    suffix: test1.txt
+
+  - name: create file from Template
+    template:
+          src: /mytemplates/foo.j2
+          dest: [anspath] + /file.conf
