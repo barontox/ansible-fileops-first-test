@@ -1,7 +1,7 @@
 ---
 - hosts: tower
   become: no
-  gather_facts: False
+#  gather_facts: False
   tasks:
    - name: checking if the file 1 exists
      stat:
@@ -9,7 +9,8 @@
      register: stat_r
    - debug:
        msg: "Path exists and is a file"
-     when: stat_r.stat.exists and stat_r.stat.isreg
+     when: stat_r.stat.exists
+ # and stat_r.stat.isreg
 
    - name: moving file 1
      command: mv ~/test/file1.txt /tmp
