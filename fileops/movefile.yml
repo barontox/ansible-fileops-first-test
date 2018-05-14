@@ -5,7 +5,7 @@
   tasks:
    - name: checking if the file 1 exists
      stat:
-       path: ~/test/file1.txt
+       path: /home/vagrant/test/file1.txt
      register: stat_r
    - debug:
        msg: "Path exists and is a file"
@@ -13,5 +13,5 @@
  # and stat_r.stat.isreg
 
    - name: moving file 1
-     command: mv ~/test/file1.txt /tmp
+     command: mv /home/vagrant/test/file1.txt /tmp
      when: stat_r.stat.exists == True
