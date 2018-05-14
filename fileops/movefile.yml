@@ -1,6 +1,7 @@
 ---
 - hosts: tower
   become: yes
+  gather_facts: False
   tasks:
    - name: checking if the file 1 exists
      stat:
