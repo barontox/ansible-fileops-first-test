@@ -7,7 +7,7 @@
   tasks:
    - name: checking if the directory exists
      stat:
-       path: /tmp/ansible
+       path: /tmp/ansible_test
      register: sym
 
    - debug:
@@ -17,11 +17,11 @@
   - name: create temporary build directory
     tempfile:
       state: directory
-     suffix: ansible
+     suffix: ansible_test
      register: anspath
 
    - debug:
-       msg: "created new directory" + anspath
+       msg: "created new directory : " + anspath
 
   - name: create temporary file
     tempfile:
@@ -31,5 +31,5 @@
 
   - name: create file from Template
     template:
-          src: /mytemplates/foo.j2
+          src: foo.j2
           dest: [anspath] + /file.conf
