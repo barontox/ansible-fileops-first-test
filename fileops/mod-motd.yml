@@ -1,7 +1,7 @@
 ---
 - hosts: all
   become: yes
-  gather_facts: False
+#  gather_facts: False
   tasks:
     - name: set motd
       template: src=motd.j2 dest=/etc/motd
