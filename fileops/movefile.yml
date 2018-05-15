@@ -9,8 +9,7 @@
      register: stat_r
    - debug:
        msg: "Path exists and is a file"
-     when: stat_r.stat.exists
- # and stat_r.stat.isreg
+     when: stat_r.stat.exists and stat_r.stat.isreg
 
    - name: moving file 1
      command: mv /home/vagrant/test/file1.txt /tmp
